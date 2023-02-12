@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    :root{
+      --helper-tint:#f3f4ff;
+      --gradientSupport: -webkit-linear-gradient(
+        0deg,
+        rgb(132 144 255) 0%,
+        rgb(98 189 252) 100%
+    );
+    --shadowSupport:0 2rem 2rem 0 rgb(132 144 255/30%) ;
+
+    }
+
+
+    .container{
+      margin: auto;
+      border: 5px solid rgb(0, 0, 0);
+      font-size: 30px;
+      padding: 10px;
+      text-align: center;
+      height: 100%;
+      width: 98%;
+      background-color: #e4e4e4;
+
+    }
+    .form{
+      max-width: 70rem;
+    margin: 0 auto;
+    margin-top: 9rem;
+    transition: all 0.3s linear;
+      
+    }
+
+    .form .grid{
+      gap:3.2rem;
+    }
+    .container .form{
+      display: flex;
+      flex-direction: column;
+      gap: 3.2rem;
+    }
+
+    .container input{
+      padding: 1.5rem 2rem;
+      border: 0.1rem solid #c9c9c9;
+      font-size: 1.6rem;
+      font-family: "work sans";
+      width: 55%;
+    }
+    .container input[type="submit"],input[type="reset"]{
+      max-width: 30%;
+      border: none;
+    }
+
+    #btn{
+     background: var(--gradientSupport);
+     padding: 1.6rem 3.2rem;
+     border: none;
+     color: var(--helper-tint);
+     display: inline-block;
+     text-transform: uppercase;
+     font-size:1.8rem ;
+     font-weight: 500;
+     cursor: pointer;
+     transition:all 0.3s ease ;
+     -webkit-transition: all 0.3s ease 0s;
+     -moz-transition: all 0.3s ease 0s;
+     -o-transition: all 0.3s ease 0s;
+ }
+
+ #btn:hover, #btn:active{
+     box-shadow: var(--shadowSupport)
+ }
+ #outputText{
+   color: rgb(248, 6, 6);
+ }
+
+
+  </style>
+</head>
+
+<body>
+  <section class="container">
+
+    <h2> A simple guess the number type game..</h2>
+    <p>Guess a number between 1 to 100..</p>
+    <p id="outputText">Enter a number below..</p>
+
+    
+      <div class="form grid">
+    <div>
+      <input type="text" placeholder="0" id="number">
+    </div>
+
+    <div class="buttons">
+      <input type="submit" value="submit now" id="btn">
+      <input type="reset" value="reset now" id="btn">
+    </div>
+
+    </div>
+
+  </section>
+
+  <script>
+    let guesses = 1;
+    let btn = document.getElementById('btn');
+    let output = document.getElementById('outputText')
+    let number = Math.floor(Math.random() * 100 + 1);
+    console.log(number);
+
+    btn.addEventListener('click', function () {
+      let input = document.getElementById('number').value;
+      if (input == number) {
+        output.innerHTML = (`you guessed  right it was , ${number}` + "<br> No.of guesses:- " + guesses);
+        output.style.color="green";
+      } 
+      
+      else if (input < number) {
+        guesses++;
+        output.innerHTML = ('you guessed too low number , ' + '\nplease guessed too high number');
+
+      };
+      if (input > number) {
+        guesses++;
+        output.innerHTML = ('you guessed too high number , ' + '\nplease guessed too low number');
+
+      }
+    })
+  </script>
+
+
+
+</body>
+
+</html>
